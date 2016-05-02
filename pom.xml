@@ -11,7 +11,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>my_format.MyFormater</mainClass>
+                            <mainClass>my_format.MyFormatter</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

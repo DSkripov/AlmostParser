@@ -43,15 +43,19 @@ public class ReadString implements IRead {
         try {
             return this.stringReader.read();
         } catch (IOException e) {
-            throw new ReadException();
+            throw new ReadException("This is in readString class", e);
         }
     }
 
+    /**
+     *
+     * @throws ReadException
+     */
     public void close() throws ReadException {
         try {
             stringReader.close();
         } catch (IOException e) {
-            throw new ReadException();
+            throw new ReadException("This is in readString class", e);
         }
     }
 

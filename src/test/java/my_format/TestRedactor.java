@@ -18,14 +18,14 @@ public class TestRedactor {
     private WriteFile writer1 ,writer2;
 
     @Before
-    public void setUp() throws ReadException, FormaterException, WriteException {
+    public void setUp() throws ReadException, FormatterException, WriteException {
 
             this.red = new Redactor();
 
     }
 
-    @Test(expected = FormaterException.class)
-    public void testFormaterException() throws FormaterException {
+    @Test(expected = FormatterException.class)
+    public void testFormaterException() throws FormatterException {
         this.red.redactor(this.reader1, this.writer2);
 
         fail();
@@ -34,7 +34,7 @@ public class TestRedactor {
 
 
     @Test
-    public void testReadFile() throws WriteException, ReadException, FormaterException {
+    public void testReadFile() throws WriteException, ReadException, FormatterException {
         String path = "/home/a/IdeaProjects/ParserCode/";
         String name = "test1.txt";
         String name1 = "example1.txt";

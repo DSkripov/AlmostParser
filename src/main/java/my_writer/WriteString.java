@@ -25,7 +25,7 @@ public class WriteString implements IWrite {
 
     /**
      *
-     * @param strS
+     * @param strS this is message
      * @throws WriteException
      */
     public void write(final String strS) throws WriteException {
@@ -34,15 +34,19 @@ public class WriteString implements IWrite {
         try {
             this.stringWriter.write(strS);
         } catch (IOException e) {
-            throw new WriteException();
+            throw new WriteException("This is in writeString class", e);
         }
     }
 
+    /**
+     *
+     * @throws WriteException
+     */
     public void close() throws WriteException {
         try {
             stringWriter.close();
         } catch (IOException e) {
-            throw new WriteException();
+            throw new WriteException("This is in writeString class", e);
         }
     }
 

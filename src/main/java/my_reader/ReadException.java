@@ -5,9 +5,25 @@ package my_reader;
  */
 public class ReadException extends Exception {
 
-    public ReadException()
+    private  Exception _hidden;
+
+    /**
+     *
+     * @param str
+     */
+    public ReadException(String str)
     {
-        super();
+        super(str);
     }
 
+    /**
+     *
+     * @param str
+     * @param e
+     */
+    public ReadException(String str, Exception e)
+    {
+        super(str);
+        _hidden = e;
+    }
 }

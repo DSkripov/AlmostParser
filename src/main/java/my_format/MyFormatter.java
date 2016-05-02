@@ -5,14 +5,10 @@ import my_reader.ReadFile;
 import my_writer.WriteException;
 import my_writer.WriteFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Stack;
-
 /**
  * This is the main class of the project
  */
-public class MyFormater {
+public class MyFormatter {
 
     //static String strR = "/home/a/Рабочий стол.test.txt";
     //static String strW = "example.txt";
@@ -23,12 +19,12 @@ public class MyFormater {
     /**
      *
      * @param args
-     * @throws FormaterException
+     * @throws FormatterException
      */
-    public static void main(String[] args) throws FormaterException {
+    public static void main(String[] args) throws FormatterException {
         try {
             //File file = new File(path, name);
-            //MyFormater.class.getResource("test.txt").getFile();
+            //MyFormatter.class.getResource("test.txt").getFile();
             //file.setReadable(true);
             WriteFile output1 = new WriteFile(path, name);
             output1.write("import java.io.*;public class MyNew{public static void main(String[] args){}}");
@@ -56,15 +52,15 @@ public class MyFormater {
             input.close();
             output.close();
         } catch (WriteException e) {
-            throw new FormaterException();
+            throw new FormatterException("This is exception in main class", e);
         } catch (ReadException e) {
-            throw new FormaterException();
+            throw new FormatterException("This is exception in main class", e);
         }
 
 
     }
 /*
-    public static void redactor(ReadFile input, WriteFile output) throws FormaterException {
+    public static void redactor(ReadFile input, WriteFile output) throws FormatterException {
 
         try {
             int c;
@@ -116,7 +112,7 @@ public class MyFormater {
                         }
 
                         if (stack.isEmpty() || (iter < 0)) {
-                            throw new FormaterException();
+                            throw new FormatterException();
                         }
                         stack.pop();
                         iter--;
@@ -133,9 +129,9 @@ public class MyFormater {
 
             }
         } catch (ReadException e) {
-            throw new FormaterException();
+            throw new FormatterException();
         } catch (WriteException e) {
-            throw new FormaterException();
+            throw new FormatterException();
         }
     }
 */

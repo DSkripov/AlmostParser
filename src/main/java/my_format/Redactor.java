@@ -2,10 +2,8 @@ package my_format;
 
 import my_reader.IRead;
 import my_reader.ReadException;
-import my_reader.ReadFile;
 import my_writer.IWrite;
 import my_writer.WriteException;
-import my_writer.WriteFile;
 
 import java.util.Stack;
 
@@ -14,12 +12,18 @@ import java.util.Stack;
  */
 public class Redactor {
 
-    public void redactor(IRead input, IWrite output) throws FormaterException {
+    /**
+     *
+     * @param input is input stream
+     * @param output is output stream
+     * @throws FormatterException
+     */
+    public void redactor(IRead input, IWrite output) throws FormatterException {
 
         try {
             int c;
             //int it = 0;
-            int iter = 0;
+            int it = 0;
             //Character ch = new Character();
             Stack stack = new Stack();
 
@@ -33,8 +37,8 @@ public class Redactor {
                         output.write(s);
                         output.write(";\n");
                         //s = "";
-                        if (iter > 0) {
-                            for (int i = 0; i < iter; i++) {
+                        if (it > 0) {
+                            for (int i = 0; i < it; i++) {
                                 s += "\t";
                             }
                         }
@@ -46,10 +50,10 @@ public class Redactor {
                         s = "";
                         //ch = Character((char) c);
                         stack.push((char) c);
-                        iter++;
+                        it++;
 
-                        if (iter > 0) {
-                            for (int i = 0; i < iter; i++) {
+                        if (it > 0) {
+                            for (int i = 0; i < it; i++) {
                                 s += "\t";
                             }
                         }
@@ -59,17 +63,17 @@ public class Redactor {
                     case '}' :
                         s = "";
 
-                        if (iter > 0) {
-                            for (int i = 1; i < iter; i++) {
+                        if (it > 0) {
+                            for (int i = 1; i < it; i++) {
                                 output.write("\t");
                             }
                         }
 
-                        if (stack.isEmpty() || (iter < 0)) {
-                            throw new FormaterException();
+                        if (stack.isEmpty() || (it < 0)) {
+                            throw new FormatterException("Stack is empty or it less then 0");
                         }
                         stack.pop();
-                        iter--;
+                        it--;
                         output.write("}\n");
                     default :
                         //s = "";
@@ -83,11 +87,11 @@ public class Redactor {
 
             }
         } catch (ReadException e) {
-            throw new FormaterException();
+            throw new FormatterException("This is exception in redactor class", e);
         } catch (WriteException e) {
-            throw new FormaterException();
+            throw new FormatterException("This is exception in redactor class", e);
         } catch (NullPointerException e) {
-            throw new FormaterException();
+            throw new FormatterException("This is exception in redactor class", e);
         }
     }
 }

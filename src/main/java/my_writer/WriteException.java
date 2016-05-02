@@ -5,9 +5,25 @@ package my_writer;
  */
 public class WriteException extends Exception {
 
-    public WriteException()
+    private  Exception _hidden;
+
+    /**
+     *
+     * @param str
+     */
+    public WriteException(String str)
     {
-        super();
+        super(str);
     }
 
+    /**
+     *
+     * @param str
+     * @param e
+     */
+    public WriteException(String str, Exception e)
+    {
+        super(str);
+        _hidden = e;
+    }
 }

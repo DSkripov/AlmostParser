@@ -34,11 +34,11 @@ public class WriteFile implements IWrite {
             this.fileWriter = new OutputStreamWriter(fileStream, "utf-8");
             //this.printWriter = new PrintWriter(fileWriter);
         } catch (FileNotFoundException e) {
-            throw new WriteException();
+            throw new WriteException("This is in writeFile class", e);
         } catch (UnsupportedEncodingException e) {
-            throw new WriteException();
+            throw new WriteException("This is in writeFile class", e);
         } catch (NullPointerException e) {
-            throw new WriteException();
+            throw new WriteException("This is in writeFile class", e);
         }
 
     }
@@ -55,16 +55,20 @@ public class WriteFile implements IWrite {
             this.fileWriter.write(str);
             //this.fileStream.write(str);
         } catch (IOException e) {
-            throw new WriteException();
+            throw new WriteException("This is in writeFile class", e);
         }
     }
 
+    /**
+     *
+     * @throws WriteException
+     */
     public void close() throws WriteException {
         try {
             fileWriter.close();
             //fileStream.close();
         } catch (IOException e) {
-            throw new WriteException();
+            throw new WriteException("This is in writeFile class", e);
         }
     }
 

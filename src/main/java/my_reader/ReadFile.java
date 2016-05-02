@@ -31,11 +31,11 @@ public class ReadFile implements IRead {
             this.fileReader = new InputStreamReader(fileStream, "utf-8");
             //this.reader = new BufferedReader(fileReader);
         } catch (FileNotFoundException e) {
-            throw new ReadException();
+            throw new ReadException("This is in readFile class", e);
         } catch (UnsupportedEncodingException e) {
-            throw new ReadException();
+            throw new ReadException("This is in readFile class", e);
         } catch (NullPointerException e) {
-            throw new ReadException();
+            throw new ReadException("This is in readFile class", e);
         }
 
     }
@@ -51,16 +51,20 @@ public class ReadFile implements IRead {
             return this.fileReader.read();
             //return this.fileStream.read();
         } catch (IOException e) {
-            throw new ReadException();
+            throw new ReadException("This is in readFile class", e);
         }
     }
 
+    /**
+     *
+     * @throws ReadException
+     */
     public void close() throws ReadException {
         try {
             fileReader.close();
             //fileStream.close();
         } catch (IOException e) {
-            throw new ReadException();
+            throw new ReadException("This is in readFile class", e);
         }
     }
 

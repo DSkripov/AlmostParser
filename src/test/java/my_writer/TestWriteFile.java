@@ -1,7 +1,6 @@
 package my_writer;
 
-import my_format.FormaterException;
-import my_format.Redactor;
+import my_format.FormatterException;
 import my_reader.ReadException;
 import my_reader.ReadFile;
 import org.junit.Before;
@@ -18,7 +17,7 @@ public class TestWriteFile {
     private WriteFile writer1, writer2;
 
     @Before
-    public void setUp() throws ReadException, FormaterException, WriteException {
+    public void setUp() throws ReadException, FormatterException, WriteException {
 
 
     }
@@ -32,7 +31,7 @@ public class TestWriteFile {
     }
 
     @Test
-    public void testWriteFile() throws WriteException, ReadException, FormaterException {
+    public void testWriteFile() throws WriteException, ReadException, FormatterException {
         String path = "/home/a/IdeaProjects/ParserCode/";
         String name = "test2.txt";
         this.writer1 = new WriteFile(path, name);
