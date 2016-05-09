@@ -10,22 +10,18 @@ import my_writer.WriteFile;
  */
 public class MyFormatter {
 
-    //static String strR = "/home/a/Рабочий стол.test.txt";
-    //static String strW = "example.txt";
-    static String path = "/home/a/IdeaProjects/ParserCode/";
+    static String path = MyFormatter. class.getResource("").toString();
+            //"/home/a/IdeaProjects/ParserCode/";
     static String name = "test.txt";
     static String name1 = "example.txt";
 
     /**
-     *
-     * @param args
+     * @param args is parameters of command line
      * @throws FormatterException
      */
     public static void main(String[] args) throws FormatterException {
         try {
-            //File file = new File(path, name);
-            //MyFormatter.class.getResource("test.txt").getFile();
-            //file.setReadable(true);
+
             WriteFile output1 = new WriteFile(path, name);
             output1.write("import java.io.*;public class MyNew{public static void main(String[] args){}}");
             output1.close();
@@ -40,7 +36,7 @@ public class MyFormatter {
             int c = input.read();
             String s = "";
             //input.close();
-            while ( c != -1) {
+            while (c != -1) {
                 s += (char) c;
                 c = input.read();
             }
@@ -59,80 +55,4 @@ public class MyFormatter {
 
 
     }
-/*
-    public static void redactor(ReadFile input, WriteFile output) throws FormatterException {
-
-        try {
-            int c;
-            //int it = 0;
-            int iter = 0;
-            //Character ch = new Character();
-            Stack stack = new Stack();
-
-            String s = "";
-
-            while ((c = input.read()) != -1) {
-              //  it++;
-                switch ((char) c) {
-                    case ';':
-                //        if it
-                        output.write(s);
-                        output.write(";\n");
-                        //s = "";
-                        if (iter > 0) {
-                            for (int i = 0; i < iter; i++) {
-                                s += "\t";
-                            }
-                        }
-                        s = "";
-                        //output.write(s);
-                        break;
-                    case '{' :
-                        output.write(s);
-                        s = "";
-                        //ch = Character((char) c);
-                        stack.push((char) c);
-                        iter++;
-
-                        if (iter > 0) {
-                            for (int i = 0; i < iter; i++) {
-                                s += "\t";
-                            }
-                        }
-
-                        output.write(" {\n"); //need tabulation
-                        break;
-                    case '}' :
-                        s = "";
-
-                        if (iter > 0) {
-                            for (int i = 1; i < iter; i++) {
-                                output.write("\t");
-                            }
-                        }
-
-                        if (stack.isEmpty() || (iter < 0)) {
-                            throw new FormatterException();
-                        }
-                        stack.pop();
-                        iter--;
-                        output.write("}\n");
-                    default :
-                        //s = "";
-                        //s += (char) c;
-
-                        s += (char) c;
-
-                        //output.write(s);
-                        break;
-                }
-
-            }
-        } catch (ReadException e) {
-            throw new FormatterException();
-        } catch (WriteException e) {
-            throw new FormatterException();
-        }
-    }
-*/
 }

@@ -9,19 +9,19 @@ public class ReadException extends Exception {
 
     /**
      *
-     * @param str
+     * @param str is message about exception
      */
-    public ReadException(String str)
+    public ReadException(final String str)
     {
         super(str);
     }
 
     /**
      *
-     * @param str
-     * @param e
+     * @param str is message about exception
+     * @param e is exception
      */
-    public ReadException(String str, Exception e)
+    public ReadException(final String str, final Exception e)
     {
         super(str);
         _hidden = e;
