@@ -36,8 +36,6 @@ public class WriteFile implements IWrite {
             throw new WriteException("This is in writeFile class", e);
         } catch (UnsupportedEncodingException e) {
             throw new WriteException("This is in writeFile class", e);
-        } catch (NullPointerException e) {
-            throw new WriteException("This is in writeFile class", e);
         }
 
     }

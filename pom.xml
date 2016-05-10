@@ -15,7 +15,7 @@
                         </manifest>
                     </archive>
                     <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                        <descriptorRef>jar-with-dependencies1</descriptorRef>
                     </descriptorRefs>
                 </configuration>
             </plugin>
@@ -29,6 +29,11 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.8.4</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

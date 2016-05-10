@@ -12,7 +12,7 @@ import org.junit.Test;
 /**
  * this is test of the main service class
  */
-public class TestFormatter {
+public class TestMyFormatter {
     private MyFormatter red;
     private ReadFile reader1, reader2;
     private WriteFile writer1 ,writer2;

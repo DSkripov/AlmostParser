@@ -1,5 +1,5 @@
-import my_format.FormatterException;
 import my_format.MyFormatter;
+import my_format.FormatterException;
 import my_reader.ReadException;
 import my_reader.ReadFile;
 import my_writer.WriteException;
@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  */
 public class BootStrap {
     final static Logger log = LoggerFactory.getLogger(BootStrap.class);
-    static String path = BootStrap. class.getResource("").toString();
+    static String path = "/home/a/IdeaProjects/ParserCode/";//BootStrap. class.getResource("").toString();
             //"/home/a/IdeaProjects/ParserCode/";
     static String name = "test.txt";
     static String name1 = "example.txt";
@@ -30,16 +30,13 @@ public class BootStrap {
             output1.write("import java.io.*;public class MyNew{public static void main(String[] args){}}");
             log.info("Writing in file");
             output1.close();
-            log.info("Close this file stream");
+            log.info("Close first file stream");
 
             WriteFile output = new WriteFile(path, name1);
-            log.info("Open output file stream");
             ReadFile input = new ReadFile(path, name);
-            log.info("Open input file stream");
             MyFormatter red = new MyFormatter();
-            log.info("Making new MyFormatter object");
             red.redactor(input, output);
-            log.info("MyFormatter object parse string");
+
             int c = input.read();
             log.info("We read character from file input stream");
             String s = "";

@@ -6,8 +6,13 @@ import my_reader.ReadFile;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.*;
 
 /**
  * this is junit test for WriteFile class
@@ -24,7 +29,7 @@ public class TestWriteFile {
 
 
     @Test(expected = WriteException.class)
-    public void testWriteExepction() throws WriteException {
+    public void testWriteFileExceptionFileNotFoundException() throws WriteException {
         this.writer1 = new WriteFile("","");
 
         fail();
