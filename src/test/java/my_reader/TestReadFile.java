@@ -26,16 +26,15 @@ public class TestReadFile {
 
     @Before
     public void setUp() throws ReadException, WriteException {
-        this.name = "test.txt";
+        this.name = "test0.txt";
         this.path = "/home/a/IdeaProjects/ParserCode/";
-
+        this.output1 = new WriteFile(path, name);
         this.input1 = new ReadFile(path, name);
     }
 
     @Test
     public void testMyReader() throws WriteException, ReadException {
-        //this.output2 = new WriteFile
-            this.output1 = new WriteFile(path, name);
+            //this.output1 = new WriteFile(path, name);
             this.output1.write("abc");
             output1.close();
 

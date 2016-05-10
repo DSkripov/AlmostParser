@@ -7,10 +7,7 @@ import java.io.*;
  */
 public class ReadString implements IRead {
 
-    private InputStream stringStream;
-    //private InputStream in;
     private Reader stringReader;
-    private BufferedReader reader;
     private String str;
 
     /**
@@ -21,20 +18,13 @@ public class ReadString implements IRead {
     public ReadString(String strS) throws ReadException {
 
             this.str = strS;
-
-            //this.stringStream = new StringBufferInputStream();
             this.stringReader = new StringReader(this.str);
-            //this.reader = new BufferedReader(fileReader);
-         /*catch (FileNotFoundException e) {
-            throw new ReadException();
-        } catch (UnsupportedEncodingException e) {
-            throw new ReadException();
-        }*/
+
 
     }
 
     /**
-     * @return
+     * @return int read element of input stream
      * @throws ReadException
      */
     public int read() throws ReadException {

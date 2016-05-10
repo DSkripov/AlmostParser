@@ -18,17 +18,16 @@ public class WriteFile implements IWrite {
 
     /**
      *
-     * @param pathS
+     * @param pathS is path to File
+     * @param nameS is name of File
      * @throws WriteException
      */
-    public WriteFile(String pathS, String nameS) throws WriteException {
+    public WriteFile(final String pathS, final String nameS) throws WriteException {
         this.name = nameS;
         this.path = pathS;
 
         try {
             File file = new File(path, name);
-            //file.setReadable(true);
-            file.setWritable(true);
             this.fileStream = new FileOutputStream(file);
             //this.printStream = new PrintStream(fileStream);
             this.fileWriter = new OutputStreamWriter(fileStream, "utf-8");

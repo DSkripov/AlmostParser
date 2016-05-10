@@ -1,7 +1,7 @@
 package my_format;
 
 /**
- * This is exception for MyFormatter and Redactor
+ * This is exception for BootStrap and MyFormatter
  */
 public class FormatterException extends Exception {
 

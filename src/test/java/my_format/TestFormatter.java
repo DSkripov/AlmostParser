@@ -12,20 +12,20 @@ import org.junit.Test;
 /**
  * this is test of the main service class
  */
-public class TestRedactor {
-    private Redactor red;
+public class TestFormatter {
+    private MyFormatter red;
     private ReadFile reader1, reader2;
     private WriteFile writer1 ,writer2;
 
     @Before
     public void setUp() throws ReadException, FormatterException, WriteException {
 
-            this.red = new Redactor();
+            this.red = new MyFormatter();
 
     }
 
     @Test(expected = FormatterException.class)
-    public void testFormaterException() throws FormatterException {
+    public void testFormatterException() throws FormatterException {
         this.red.redactor(this.reader1, this.writer2);
 
         fail();

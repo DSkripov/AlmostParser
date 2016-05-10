@@ -7,12 +7,7 @@ import java.io.*;
  */
 public class WriteString implements IWrite {
 
-    private OutputStream stringStream;
-    private PrintStream printStream;
-    //private InputStream in;
-    private Writer stringWriter;
-    private PrintWriter printWriter;
-    private String str;
+    private StringWriter stringWriter;
 
     /**
      * @throws WriteException
@@ -28,14 +23,8 @@ public class WriteString implements IWrite {
      * @param strS this is message
      * @throws WriteException
      */
-    public void write(final String strS) throws WriteException {
-
-        //this.fileStream = new FileInputStream(new File(path));
-        try {
+    public void write(String strS) {
             this.stringWriter.write(strS);
-        } catch (IOException e) {
-            throw new WriteException("This is in writeString class", e);
-        }
     }
 
     /**
@@ -44,10 +33,17 @@ public class WriteString implements IWrite {
      */
     public void close() throws WriteException {
         try {
-            stringWriter.close();
+            this.stringWriter.close();
         } catch (IOException e) {
             throw new WriteException("This is in writeString class", e);
         }
     }
 
+    /**
+     *
+     * @return String that is in StringWriter
+     */
+    public String toString() {
+       return this.stringWriter.toString();
+    }
 }

@@ -11,7 +11,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>my_format.MyFormatter</mainClass>
+                            <mainClass>BootStrap</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -40,6 +40,11 @@
             <artifactId>javassist</artifactId>
             <version>3.13.0-GA</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.21</version>
         </dependency>
     </dependencies>
 

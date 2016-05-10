@@ -1,5 +1,6 @@
 package my_reader;
 
+
 import java.io.*;
 
 /**
@@ -9,27 +10,22 @@ import java.io.*;
 public class ReadFile implements IRead {
 
     private InputStream fileStream;
-    //private InputStream in;
     private Reader fileReader;
-    private BufferedReader reader;
     private String path;
     private String name;
     /**
      *
-     * @param pathS
+     * @param pathS is path to file
      * @throws ReadException
      */
-    public ReadFile(String pathS, String nameS) throws ReadException {
+    public ReadFile(final String pathS, final String nameS) throws ReadException {
         this.name = nameS;
         this.path = pathS;
 
         try {
-            File file = new File(path, name);
-            file.setReadable(true);
-            //file.setWritable(true);
+            File file = new File(path.concat(name));
             this.fileStream = new FileInputStream(file);
             this.fileReader = new InputStreamReader(fileStream, "utf-8");
-            //this.reader = new BufferedReader(fileReader);
         } catch (FileNotFoundException e) {
             throw new ReadException("This is in readFile class", e);
         } catch (UnsupportedEncodingException e) {
@@ -41,15 +37,13 @@ public class ReadFile implements IRead {
     }
 
     /**
-     * @return
+     * @return int variable
      * @throws ReadException
      */
     public int read() throws ReadException {
 
-        //this.fileStream = new FileInputStream(new File(path));
         try {
             return this.fileReader.read();
-            //return this.fileStream.read();
         } catch (IOException e) {
             throw new ReadException("This is in readFile class", e);
         }
@@ -62,7 +56,6 @@ public class ReadFile implements IRead {
     public void close() throws ReadException {
         try {
             fileReader.close();
-            //fileStream.close();
         } catch (IOException e) {
             throw new ReadException("This is in readFile class", e);
         }
