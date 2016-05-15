@@ -1,14 +1,20 @@
-package my_writer;
+package writer;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
 /**
- * this is string writer
+ * This is string writer
  */
 public class WriteString implements IWrite {
 
     private StringWriter stringWriter;
-
+    /**
+     *
+     */
+    static final Logger log = LoggerFactory.getLogger(WriteString.class);
     /**
      * @throws WriteException
      */
@@ -23,7 +29,8 @@ public class WriteString implements IWrite {
      * @param strS this is message
      * @throws WriteException
      */
-    public void write(String strS) {
+    public void write(final String strS) {
+            log.error("Write to WriteString");
             this.stringWriter.write(strS);
     }
 
@@ -35,7 +42,8 @@ public class WriteString implements IWrite {
         try {
             this.stringWriter.close();
         } catch (IOException e) {
-            throw new WriteException("This is in writeString class", e);
+            log.error("This is IOException in WriteString", new WriteException("Can not write to this string writer", e));
+            throw new WriteException("Can not write to this string writer", e);
         }
     }
 

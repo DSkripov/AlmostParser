@@ -1,4 +1,7 @@
-package my_writer;
+package writer;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
@@ -9,13 +12,13 @@ import java.io.*;
 public class WriteFile implements IWrite {
 
     private OutputStream fileStream;
-    private PrintStream printStream;
-    //private InputStream in;
     private Writer fileWriter;
-    private PrintWriter printWriter;
     private String path;
     private String name;
-
+    /**
+     *
+     */
+    static final Logger log = LoggerFactory.getLogger(WriteFile.class);
     /**
      *
      * @param pathS is path to File
@@ -29,13 +32,10 @@ public class WriteFile implements IWrite {
         try {
             File file = new File(path, name);
             this.fileStream = new FileOutputStream(file);
-            //this.printStream = new PrintStream(fileStream);
             this.fileWriter = new OutputStreamWriter(fileStream, "utf-8");
-            //this.printWriter = new PrintWriter(fileWriter);
-        } catch (FileNotFoundException e) {
-            throw new WriteException("This is in writeFile class", e);
-        } catch (UnsupportedEncodingException e) {
-            throw new WriteException("This is in writeFile class", e);
+        } catch (IOException e) {
+            log.info("This is IOException in ReadFile", new WriteException("Can not use file for writing", e));
+            throw new WriteException("Can not use file for writing", e);
         }
 
     }
@@ -46,13 +46,11 @@ public class WriteFile implements IWrite {
      * @throws WriteException
      */
     public void write(final String str) throws WriteException {
-
-        //this.fileStream = new FileInputStream(new File(path));
         try {
             this.fileWriter.write(str);
-            //this.fileStream.write(str);
         } catch (IOException e) {
-            throw new WriteException("This is in writeFile class", e);
+            log.error("This is IOException in ReadFile", new WriteException("Can not write in this file", e));
+            throw new WriteException("Can not write in this file", e);
         }
     }
 
@@ -63,9 +61,9 @@ public class WriteFile implements IWrite {
     public void close() throws WriteException {
         try {
             fileWriter.close();
-            //fileStream.close();
         } catch (IOException e) {
-            throw new WriteException("This is in writeFile class", e);
+            log.error("This is IOException in WriteFile", new WriteException("Can not close this file which we used for writing", e));
+            throw new WriteException("Can not close this file which we used for writing", e);
         }
     }
 

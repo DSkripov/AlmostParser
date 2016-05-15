@@ -1,11 +1,9 @@
-package my_writer;
+package writer;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.io.StringWriter;
+import writer.WriteException;
+import writer.WriteString;
 
 import static org.junit.Assert.assertEquals;
 

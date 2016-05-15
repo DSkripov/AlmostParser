@@ -1,18 +1,14 @@
-package my_reader;
+package reader;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import my_reader.ReadException;
-import my_reader.ReadFile;
-import my_writer.WriteException;
-import my_writer.WriteFile;
+import reader.ReadException;
+import reader.ReadFile;
+import writer.WriteException;
+import writer.WriteFile;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.matchers.StringContains;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 
 /**
  * This is junit test class for ReadFile class

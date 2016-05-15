@@ -11,7 +11,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>BootStrap</mainClass>
+                            <mainClass>example.it.com.BootStrap</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

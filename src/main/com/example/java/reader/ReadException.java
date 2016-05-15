@@ -1,4 +1,4 @@
-package my_reader;
+package reader;
 
 /**
  * This is exception for reader

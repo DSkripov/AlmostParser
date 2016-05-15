@@ -1,19 +1,22 @@
-package my_format;
+package format;
 
-import my_reader.IRead;
-import my_reader.ReadException;
-import my_writer.IWrite;
-import my_writer.WriteException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import reader.IRead;
+import reader.ReadException;
+import writer.IWrite;
+import writer.WriteException;
 
 import java.util.Stack;
-
+import java.util.Properties;
 /**
  * This is the main service class
  */
 public class MyFormatter {
-
+    /**
+     *
+     */
+    static final Logger log = LoggerFactory.getLogger(MyFormatter.class);
     /**
      *
      * @param input is input stream
@@ -21,24 +24,24 @@ public class MyFormatter {
      * @throws FormatterException
      */
     public void redactor(final IRead input, final IWrite output) throws FormatterException {
-
+        Properties property = new Properties();
         try {
             int c;
             int it = 0;
             Stack stack = new Stack();
-
+            log.info("Create new stack of '{', '}'");
             String s = "";
 
             while ((c = input.read()) != -1) {
+                log.info("Write character to output stream");
                 switch ((char) c) {
                     case ';':
-                        //        if it
                         output.write(s);
-                        output.write(";\n");
-                        //s = "";
+                        output.write(";");
+                        output.write(property.getProperty("db.nl"));
                         if (it > 0) {
                             for (int i = 0; i < it; i++) {
-                                s += "\t";
+                                s += property.getProperty("db.tab");
                             }
                         }
                         s = "";
@@ -49,11 +52,12 @@ public class MyFormatter {
                         s = "";
                         //ch = Character((char) c);
                         stack.push((char) c);
+                        log.info("Push '{' to stack");
                         it++;
 
                         if (it > 0) {
                             for (int i = 0; i < it; i++) {
-                                s += "\t";
+                                s += property.getProperty("db.tab");
                             }
                         }
 
@@ -64,33 +68,34 @@ public class MyFormatter {
 
                         if (it > 0) {
                             for (int i = 1; i < it; i++) {
-                                output.write("\t");
+                                output.write(property.getProperty("db.tab"));
                             }
                         }
 
                         if (stack.isEmpty() || (it < 0)) {
+                            log.error("This is FormatterException in MyFormatter", new FormatterException("Stack is empty or it less then 0"));
                             throw new FormatterException("Stack is empty or it less then 0");
                         }
                         stack.pop();
+                        log.info("Pop '{' from stack");
                         it--;
-                        output.write("}\n");
+                        output.write("}");
+                        output.write(property.getProperty("db.nl"));
                     default :
-                        //s = "";
-                        //s += (char) c;
-
                         s += (char) c;
-
-                        //output.write(s);
                         break;
                 }
 
             }
         } catch (ReadException e) {
-            throw new FormatterException("This is exception in redactor class", e);
+            log.error("This is ReadException in MyFormatter", e);
+            throw new FormatterException("Can not use input stream for reading", e);
         } catch (WriteException e) {
-            throw new FormatterException("This is exception in redactor class", e);
+            log.error("This is WriteException in MyFormatter", e);
+            throw new FormatterException("Can not use output stream for writing", e);
         } catch (NullPointerException e) {
-            throw new FormatterException("This is exception in redactor class", e);
+            log.error("This is NullPointerException in MyFormatter", e);
+            throw new FormatterException("There are null input or output", e);
         }
     }
 }

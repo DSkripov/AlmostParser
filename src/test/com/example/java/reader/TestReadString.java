@@ -1,18 +1,13 @@
-package my_reader;
+package reader;
 
 import static org.junit.Assert.assertEquals;
 
-import my_reader.ReadException;
-import my_reader.ReadFile;
-import my_writer.WriteException;
-import my_writer.WriteFile;
-import my_writer.WriteString;
+import reader.ReadException;
+import reader.ReadString;
+import writer.WriteException;
+import writer.WriteString;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.matchers.StringContains;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 
 /**
  * This is junit test class for ReadingString class

@@ -1,9 +1,9 @@
-import my_format.MyFormatter;
-import my_format.FormatterException;
-import my_reader.ReadException;
-import my_reader.ReadFile;
-import my_writer.WriteException;
-import my_writer.WriteFile;
+import format.MyFormatter;
+import format.FormatterException;
+import reader.ReadException;
+import reader.ReadFile;
+import writer.WriteException;
+import writer.WriteFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,18 +11,33 @@ import org.slf4j.LoggerFactory;
 /**
  * This is the main class of the project
  */
-public class BootStrap {
-    final static Logger log = LoggerFactory.getLogger(BootStrap.class);
-    static String path = "/home/a/IdeaProjects/ParserCode/";//BootStrap. class.getResource("").toString();
-            //"/home/a/IdeaProjects/ParserCode/";
+public final class BootStrap {
+    /**
+     * This is logger for exceptions and some moments in execution
+     */
+    static final Logger log = LoggerFactory.getLogger(BootStrap.class);
+    /**
+     * This is the path to test file
+     */
+    static String path = "/home/a/IdeaProjects/ParserCode/";
+    /**
+     * This is the name of test file
+     */
     static String name = "test.txt";
+    /**
+     * This is the name of example file which show us how works MyFormatter
+     */
     static String name1 = "example.txt";
+
+    private BootStrap() {
+
+    }
 
     /**
      * @param args is parameters of command line
      * @throws FormatterException
      */
-    public static void main(String[] args) throws FormatterException {
+    public static void main(final String[] args) throws FormatterException {
         try {
 
             WriteFile output1 = new WriteFile(path, name);
@@ -53,10 +68,10 @@ public class BootStrap {
             output.close();
         } catch (WriteException e) {
             log.error("This is WriteException in BootStrap", e);
-            throw new FormatterException("This is exception in main class", e);
         } catch (ReadException e) {
             log.error("This is ReadException in BootStrap", e);
-            throw new FormatterException("This is exception in main class", e);
+        } catch (FormatterException e) {
+            log.error("This is FormatterException in BootStrap", e);
         }
 
 

@@ -1,4 +1,4 @@
-package my_writer;
+package writer;
 
 /**
  * This is exception for reader

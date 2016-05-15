@@ -1,4 +1,4 @@
-package my_format;
+package format;
 
 /**
  * This is exception for BootStrap and MyFormatter

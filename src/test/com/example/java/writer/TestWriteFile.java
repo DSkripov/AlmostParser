@@ -1,18 +1,15 @@
-package my_writer;
+package writer;
 
-import my_format.FormatterException;
-import my_reader.ReadException;
-import my_reader.ReadFile;
+import format.FormatterException;
+import reader.ReadException;
+import reader.ReadFile;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
+import writer.WriteException;
+import writer.WriteFile;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.*;
 
 /**
  * this is junit test for WriteFile class

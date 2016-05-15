@@ -1,10 +1,13 @@
-package my_reader;
+package reader;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
 /**
- * This is reader class
+ * This is reader class for reading from file
  */
 
 public class ReadFile implements IRead {
@@ -13,6 +16,10 @@ public class ReadFile implements IRead {
     private Reader fileReader;
     private String path;
     private String name;
+    /**
+     *
+     */
+    static final Logger log = LoggerFactory.getLogger(ReadFile.class);
     /**
      *
      * @param pathS is path to file
@@ -26,12 +33,9 @@ public class ReadFile implements IRead {
             File file = new File(path.concat(name));
             this.fileStream = new FileInputStream(file);
             this.fileReader = new InputStreamReader(fileStream, "utf-8");
-        } catch (FileNotFoundException e) {
-            throw new ReadException("This is in readFile class", e);
-        } catch (UnsupportedEncodingException e) {
-            throw new ReadException("This is in readFile class", e);
-        } catch (NullPointerException e) {
-            throw new ReadException("This is in readFile class", e);
+        } catch (IOException e) {
+            log.error("This is IOException in ReadFile", new ReadException("Can not use file for reading", e));
+            throw new ReadException("Can not use file for reading", e);
         }
 
     }
@@ -45,7 +49,8 @@ public class ReadFile implements IRead {
         try {
             return this.fileReader.read();
         } catch (IOException e) {
-            throw new ReadException("This is in readFile class", e);
+            log.error("This is IOException in ReadFile", new ReadException("Can not read from this file", e));
+            throw new ReadException("Can not read from this file", e);
         }
     }
 
@@ -57,7 +62,8 @@ public class ReadFile implements IRead {
         try {
             fileReader.close();
         } catch (IOException e) {
-            throw new ReadException("This is in readFile class", e);
+            log.info("This is IOException in ReadFile", new ReadException("Can not close this file", e));
+            throw new ReadException("Can not close this file", e);
         }
     }
 
